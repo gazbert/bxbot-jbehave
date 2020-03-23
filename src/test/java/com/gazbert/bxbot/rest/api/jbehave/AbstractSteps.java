@@ -60,7 +60,7 @@ import org.jbehave.core.annotations.Then;
  *
  * @author gazbert
  */
-public class AbstractSteps {
+public abstract class AbstractSteps {
 
   private static final Logger LOG = LogManager.getLogger();
 

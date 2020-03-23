@@ -25,10 +25,6 @@
     <system>GitHub</system>
     <url>https://github.com/gazbert/bxbot-jbehave/issues</url>
   </issueManagement>
-  <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/gazbert/bxbot-jbehave</url>
-  </ciManagement>
   <developers>
     <developer>
       <id>gazbert</id>

@@ -41,13 +41,20 @@
     <spring-boot-starter.version>2.1.4.RELEASE</spring-boot-starter.version>
     <jackson.version>2.10.3</jackson.version>
     <spotbugs.version>3.1.11</spotbugs.version>
+    <log4j.version>2.13.1</log4j.version>
     <skip.bdd.tests>false</skip.bdd.tests>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
-      <version>${spring-boot-starter.version}</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

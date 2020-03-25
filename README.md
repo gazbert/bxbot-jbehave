@@ -9,7 +9,7 @@ You'll need [openjdk-11-jdk](http://openjdk.java.net/projects/jdk/11/) or
  
 1. Start an instance of [BX-bot](https://github.com/gazbert/bxbot) and note the REST API base URI and user credentials.
 1. Update the [./src/test/resources/restapi-config.properties](./src/test/resources/restapi-config.properties) if you need to.
-From the project root, run `./mvnw clean install`
+1. From the project root, run `./mvnw clean install`
 1. Take a look at the JBehave test reports in the `./target/jbehave/view/report.html` file after the build completes.
 
 ## Issue & Change Management

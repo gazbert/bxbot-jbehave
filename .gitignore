@@ -25,6 +25,9 @@ hs_err_pid*
 **/logs
 **/out
 
-# Allow maven wrapper jars - we need these for TravisCI
+# Allow maven and gradle wrapper jars - we need these for TravisCI
 !.mvn/wrapper/maven-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.jar
 
+# Gradle
+.gradle

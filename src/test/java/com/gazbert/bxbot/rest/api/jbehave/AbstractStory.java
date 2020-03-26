@@ -27,10 +27,14 @@ import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 import static org.jbehave.core.reporters.Format.TXT;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -53,12 +57,18 @@ import org.jbehave.core.steps.ParameterConverters.DateConverter;
  */
 public abstract class AbstractStory extends JUnitStories {
 
+  private static final Logger LOG = LogManager.getLogger();
+
+  private String jbehaveReportDir;
+
   public abstract String storyName();
 
   public abstract Object stepInstance();
 
   @Override
   public Configuration configuration() {
+
+    jbehaveReportDir = getJBehaveReportDir();
 
     final Class<? extends Embeddable> embeddableClass = this.getClass();
     final Properties viewResources = new Properties();
@@ -73,7 +83,9 @@ public abstract class AbstractStory extends JUnitStories {
         .useStoryPathResolver(new UnderscoredCamelCaseResolver())
         .useStoryReporterBuilder(
             new StoryReporterBuilder()
-                .withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
+                .withCodeLocation(
+                    jbehaveReportDir != null ? CodeLocations.codeLocationFromPath(jbehaveReportDir)
+                        : CodeLocations.codeLocationFromClass(embeddableClass))
                 .withDefaultFormats()
                 .withPathResolver(new ResolveToPackagedName())
                 .withViewResources(viewResources)
@@ -91,5 +103,26 @@ public abstract class AbstractStory extends JUnitStories {
   @Override
   protected List<String> storyPaths() {
     return Collections.singletonList(storyName());
+  }
+
+  /*
+   * This prop is be set in the maven or gradle build.
+   * When running tests directly from IDE, the default maven target location is used.
+   */
+  private String getJBehaveReportDir() {
+    final Properties props = new Properties();
+    final InputStream is = AbstractStory.class.getClassLoader()
+        .getResourceAsStream("jbehave.properties");
+    assert is != null;
+    try {
+      props.load(is);
+    } catch (IOException e) {
+      // fail fast
+      throw new RuntimeException(e);
+    }
+
+    jbehaveReportDir = props.getProperty("jbehave.report.dir");
+    LOG.info(() -> "[CONFIG] JBehave report dir: " + jbehaveReportDir);
+    return jbehaveReportDir;
   }
 }

@@ -28,6 +28,7 @@ import static org.junit.Assert.assertEquals;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gazbert.bxbot.rest.api.domain.EngineConfig;
 import com.gazbert.bxbot.rest.api.jbehave.AbstractSteps;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.Charsets;
@@ -89,6 +90,8 @@ public class UpdateEngineConfigSteps extends AbstractSteps {
     updateEngineConfig.setBotId("my-bitstamp-bot_1");
     updateEngineConfig.setBotName(botname);
     updateEngineConfig.setTradeCycleInterval(tradeCycleInterval);
+    updateEngineConfig.setEmergencyStopCurrency("BTC");
+    updateEngineConfig.setEmergencyStopBalance(new BigDecimal("0.1"));
 
     final ObjectMapper mapper = new ObjectMapper();
     final String jsonPayload = mapper.writeValueAsString(updateEngineConfig);
@@ -113,6 +116,8 @@ public class UpdateEngineConfigSteps extends AbstractSteps {
     updateEngineConfig.setBotId("my-bitstamp-bot_1");
     updateEngineConfig.setBotName(botname);
     updateEngineConfig.setTradeCycleInterval(tradeCycleInterval);
+    updateEngineConfig.setEmergencyStopCurrency("BTC");
+    updateEngineConfig.setEmergencyStopBalance(new BigDecimal("0.1"));
 
     final ObjectMapper mapper = new ObjectMapper();
     final String jsonPayload = mapper.writeValueAsString(updateEngineConfig);
@@ -138,6 +143,8 @@ public class UpdateEngineConfigSteps extends AbstractSteps {
     expectedEngineConfig.setBotId("my-bitstamp-bot_1");
     expectedEngineConfig.setBotName(botname);
     expectedEngineConfig.setTradeCycleInterval(tradeCycleInterval);
+    expectedEngineConfig.setEmergencyStopCurrency("BTC");
+    expectedEngineConfig.setEmergencyStopBalance(new BigDecimal("0.1"));
 
     final ObjectMapper mapper = new ObjectMapper();
     final HttpEntity responseEntity = getHttpResponse().getEntity();

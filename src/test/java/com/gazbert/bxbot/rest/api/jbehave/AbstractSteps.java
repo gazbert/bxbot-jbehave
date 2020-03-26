@@ -78,6 +78,11 @@ public class AbstractSteps {
   private String apiPath;
   private HttpResponse httpResponse;
 
+  /**
+   * Loads the REST API configuration before running the stories.
+   *
+   * @throws Exception if anything unexpected happens.
+   */
   @BeforeStories
   public void loadConfiguration() throws Exception {
 

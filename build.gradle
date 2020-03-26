@@ -29,8 +29,29 @@ version = '0.0.1-SNAPSHOT'
 description = 'BX-bot REST API JBehave Tests'
 sourceCompatibility = '11'
 
+
+apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion '8.21'
+    configFile = file("${rootDir}/etc/google_checks.xml")
+    ignoreFailures = false
+    showViolations = true
+    maxErrors = 0
+    maxWarnings = 0
+}
+checkstyleMain {
+    source = 'src/main/java'
+}
+checkstyleTest {
+    source = 'src/test/java'
+}
+
 test {
     systemProperty "metaFilters", System.getProperty("metaFilters", "")
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 
     doFirst {
         copy {

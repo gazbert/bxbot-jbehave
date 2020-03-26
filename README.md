@@ -9,8 +9,15 @@ You'll need [openjdk-11-jdk](http://openjdk.java.net/projects/jdk/11/) or
  
 1. Start an instance of [BX-bot](https://github.com/gazbert/bxbot) and note the REST API base URI and user credentials.
 1. Update the [./src/test/resources/restapi-config.properties](./src/test/resources/restapi-config.properties) if you need to.
+
+### Maven
 1. From the project root, run `./mvnw clean install`
 1. Take a look at the JBehave test reports in the `./target/jbehave/view/report.html` file after the build completes.
+
+### Gradle
+1. Set the [./src/test/resources/jbehave.properties](./src/test/resources/jbehave.properties) `jbehave.report.dir` property for Gradle.
+1. From the project root, run `./gradlew build`
+1. Take a look at the JBehave test reports in the `./build/jbehave/view/report.html` file after the build completes.
 
 ## Issue & Change Management
 Issues and new features are managed using the project [Issue Tracker](https://github.com/gazbert/bxbot-jbehave/issues) -

@@ -37,7 +37,8 @@ public class JwtAuthenticationRequest {
   private String password;
 
   // Needed for Jackson
-  public JwtAuthenticationRequest() {}
+  public JwtAuthenticationRequest() {
+  }
 
   public JwtAuthenticationRequest(String username, String password) {
     this.username = username;

@@ -41,7 +41,7 @@
     <jackson.version>2.10.3</jackson.version>
     <spotbugs.version>3.1.11</spotbugs.version>
     <checkstlye.version>3.1.1</checkstlye.version>
-    <log4j.version>2.13.1</log4j.version>
+    <log4j.version>2.13.3</log4j.version>
     <skip.bdd.tests>false</skip.bdd.tests>
   </properties>
   <dependencies>
